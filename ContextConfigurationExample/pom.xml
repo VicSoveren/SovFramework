@@ -3,19 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.sovframework</groupId>
         <artifactId>sovframework</artifactId>
+        <groupId>org.sovframework</groupId>
         <version>0.0.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>context-configuration</artifactId>
+    <artifactId>context-configuration-example</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.10.2</version>
+            <groupId>org.sovframework</groupId>
+            <artifactId>context-configuration</artifactId>
+            <version>0.0.2</version>
         </dependency>
     </dependencies>
 </project>

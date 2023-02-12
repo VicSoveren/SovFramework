@@ -13,7 +13,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -24,12 +23,8 @@ public class ApplicationContext {
 
 	private final Map<Class<?>, Object> context;
 
-	public ApplicationContext() {
-		context = new HashMap<>();
-	}
-
-	public void initialize(List<String> packages) {
-		packages.stream()
+	public ApplicationContext(List<String> packages) {
+		context = packages.stream()
 				.flatMap(it -> getAllClassesInPackage(it).stream())
 				.filter(it -> Arrays.stream(it.getAnnotations())
 						.map(Annotation::annotationType)
@@ -39,10 +34,10 @@ public class ApplicationContext {
 				.flatMap(it -> it.methods.stream()
 						.map(method -> Map.entry(method.getReturnType(), invokeMethod(method, it.instance)))
 				)
-				.forEach(entry -> context.put(entry.getKey(), entry.getValue()));
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
-	public <T> Object getInstance(Class<T> type){
+	public <T> Object getInstance(Class<T> type) {
 		return context.get(type);
 	}
 

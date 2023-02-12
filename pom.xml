@@ -7,10 +7,11 @@
     <groupId>org.sovframework</groupId>
     <artifactId>sovframework</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 
     <modules>
         <module>ContextConfiguration</module>
+        <module>ContextConfigurationExample</module>
     </modules>
 
     <properties>
@@ -39,5 +40,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
