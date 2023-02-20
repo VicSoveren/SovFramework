@@ -1,20 +1,20 @@
 package org.sovframework.contextconfiguration.context;
 
 import java.util.HashMap;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ApplicationContext extends HashMap<ContextNode, Object> {
 
-	public Object get(String name, Class<?> type) {
-		return get(new ContextNode(name, type));
+	public <T> T get(String name, Class<T> type) {
+		return (T)get(new ContextNode(name, type));
 	}
 
-	public Set<Object> getByType(Class<?> type) {
+	public <T> List<T> getByType(Class<T> type) {
 		return entrySet().stream()
 				.filter(it -> it.getKey().equalsBy(type))
-				.map(Entry::getValue)
-				.collect(Collectors.toSet());
+				.map(it -> (T)it.getValue())
+				.collect(Collectors.toList());
 	}
 
 	public void put(String name, Class<?> type, Object value) {
