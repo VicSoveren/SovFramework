@@ -3,28 +3,43 @@ package org.sovframework.contextconfiguration.context;
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-class ContextNode {
+public class Instance {
 
 	private final String name;
 
 	private final Class<?> type;
 
-	public ContextNode(@Nonnull String name, @Nonnull Class<?> type) {
+	private final Object value;
+
+	public Instance(@Nonnull String name, @Nonnull Class<?> type, @Nonnull Object value) {
 		this.name = name;
 		this.type = type;
+		this.value = value;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Class<?> getType() {
+		return type;
+	}
+
+	public Object getValue() {
+		return value;
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		ContextNode that = (ContextNode) o;
+		Instance that = (Instance) o;
 		return name.equals(that.name) &&
 				type.equals(that.type);
 	}
 
-	public boolean equalsBy(Class<?> type) {
-		return this.type.equals(type);
+	public boolean subtypeOf(Class<?> that) {
+		return that.isAssignableFrom(this.type);
 	}
 
 	@Override

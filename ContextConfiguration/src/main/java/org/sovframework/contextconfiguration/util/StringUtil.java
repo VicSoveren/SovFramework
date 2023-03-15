@@ -10,4 +10,12 @@ public class StringUtil {
 		c[0] = Character.toLowerCase(c[0]);
 		return new String(c);
 	}
+
+	public static boolean isEmpty(String value) {
+		return value == null || value.isBlank();
+	}
+
+	public static String toLowerDotCase(String value) {
+		return value.toLowerCase().replace("_", ".");
+	}
 }

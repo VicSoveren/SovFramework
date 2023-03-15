@@ -7,6 +7,5 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Declaration
-public @interface Service {
+public @interface Declaration {
 }
